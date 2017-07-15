@@ -6,11 +6,16 @@ using Microsoft.AspNet.SignalR;
 
 namespace SimpleSignalRProject
 {
-	public class MyHubs : Hub
+	public class MyHub : Hub
 	{
 		public void Hello()
 		{
 			Clients.All.hello();
+		}
+
+		public void BroadCastServerTime()
+		{
+			Clients.All.MessageReciever(DateTime.Now);
 		}
 	}
 }

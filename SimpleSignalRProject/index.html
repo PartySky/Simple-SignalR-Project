@@ -5,6 +5,20 @@
     <title></title>
 </head>
 <body>
-	Hello World!
+	<span id="serverTime"></span>
+
+	<script src="Scripts/jquery-1.6.4.min.js"></script>
+	<script src="Scripts/jquery.signalR-2.2.2.min.js"></script>
+	<script src="/SignalR/hubs"></script>
+	<script>
+		$.connection.hub.start().done(function () {
+			//alert('Hello');
+			$.connection.myHub.server.broadCastServerTime();
+		});
+
+		$.connection.myHub.client.MessageReciever = function (message) {
+			$("#serverTime").text(message);
+		};
+	</script>
 </body>
 </html>
